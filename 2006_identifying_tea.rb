@@ -35,16 +35,72 @@
 
 # FIRST SOLUTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-count = 0
-tea = gets.to_i
-assumptions = gets.split
+# count = 0
+# tea = gets.to_i
+# assumptions = gets.split
+#
+# assumptions.map! { |integer| integer.to_i }
+#
+# assumptions.each do |value|
+#  count += 1 if value == tea
+# end
+#
+# puts count
 
-assumptions.map! { |integer| integer.to_i }
+# SECOND SOLUTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-assumptions.each do |value|
-  count += 1 if value == tea
+def what_tea
+  rand 1..5
 end
 
-puts count
+class Candidate
+  attr_accessor :name
+  attr_reader :choose
 
-# FIRST SOLUTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  def initialize(name)
+    @name = name
+    @choose = choose_random
+  end
+
+  def show
+    puts "\nO #{@name} escolheu o chá de número: #{@choose}"
+  end
+
+  private
+
+  def choose_random
+    rand 1..5
+  end
+end
+
+def winner(tea, candidate)
+  puts "O sabor do chá é de número: #{tea}"
+  candidate.each do |cand|
+    cand.show
+    if tea == cand.choose
+      puts "O candidato #{cand.name} está classificado!!!"
+    else
+      puts "Sorte na próxima #{cand.name}."
+    end
+  end
+end
+
+tea = what_tea
+canvass_votes = []
+
+john = Candidate.new('João')
+canvass_votes.push john
+
+maria = Candidate.new('Maria')
+canvass_votes.push maria
+
+anastasia = Candidate.new('Anastacia')
+canvass_votes.push anastasia
+
+valti_disnei = Candidate.new('Valti Disne')
+canvass_votes.push valti_disnei
+
+astrogilda = Candidate.new('Astrogilda')
+canvass_votes.push astrogilda
+
+winner(tea, canvass_votes)
