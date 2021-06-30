@@ -33,7 +33,7 @@ rescue StandardError => e
   puts "Error message: #{e.message}"
 
   puts "\n\nOnly numbers, please. Try again!\n\n"
-  retry
+  data_collect
 end
 
 def init
@@ -44,7 +44,6 @@ def init
   raise 'expected integer 2p' unless time.instance_of?(Integer)
 
   puts format('%d minutos', time)
-  puts time.class
 rescue StandardError => e
   puts "Error message: #{e.message}"
 end
