@@ -24,28 +24,23 @@
 # 110                 220 minutos
 # 7                   14 minutos
 
-def data_collect
-  distance = gets
-  raise 'expected to get an integer' unless distance =~ /^[0-9]/
+def whats_minutes(kms)
+  but_fast = 2
 
-  distance.to_i
-rescue StandardError => e
-  puts "Error message: #{e.message}"
-
-  puts "\n\nOnly numbers, please. Try again!\n\n"
-  data_collect
+  kms.to_i * but_fast
 end
 
 def init
-  but_fast = 2
-  distance = data_collect
+  distance = gets
+  raise 'expected number' unless distance =~ /^[0-9]/
 
-  time = distance * but_fast
-  raise 'expected integer 2p' unless time.instance_of?(Integer)
+  time = whats_minutes(distance)
 
   puts format('%d minutos', time)
 rescue StandardError => e
   puts "Error message: #{e.message}"
+
+  init
 end
 
 init
